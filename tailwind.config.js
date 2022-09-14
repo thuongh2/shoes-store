@@ -12,5 +12,5 @@ module.exports = {
     },
   },
   // add daisyUI plugin
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  plugins: [ require("daisyui")],
 };
