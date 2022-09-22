@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route element={<AuthLayout />}>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/product" element={<Product />}></Route>
+          <Route path="/product/:id" element={<Product />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/search/:caterory" element={<Search />}></Route>
           <Route path="/i" element={<Input />}></Route>

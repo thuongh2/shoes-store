@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcumber from "./base/Breadcumber";
 import Card from "./Card";
@@ -6,6 +7,19 @@ import Disscount from "./Disscount";
 import Service from "./Service";
 
 const Search = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`https://business-springboot.herokuapp.com/api/s/products/`)
+      .then((res) => {
+        const data = res.data;
+        setProducts(data);
+        console.log(products);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <>
       <div className="lg:px-16 m-5">
@@ -46,63 +60,11 @@ const Search = () => {
         </div>
         {/* product list */}
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <Link to="/product">
-            <Card />
-          </Link>
-
-          <Link to="/product">
-            <Card />
-          </Link>
-
-          <Link to="/product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
-          <Link to="product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
-          <Link to="product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
-
-          <Link to="product">
-            <Card />
-          </Link>
+          {products?.map((product) => (
+            <Link key={product.id} to={"/product/" + product.id}>
+              <Card product={product} />
+            </Link>
+          ))}
         </div>
         {/* end */}
       </div>
